@@ -61,7 +61,7 @@
 </div>
 <form action="/somewhere/to/upload" enctype="multipart/form-data">
 
-  <input name="progressbarTW_img" type="file" id="addpic" accept="image/gif, image/jpeg, image/png"/ >
+  <input name="progressbarTW_img" type="file" id="imgInp" accept="image/gif, image/jpeg, image/png"/ >
 
   <img id="preview_progressbarTW_img" src="#" />
 
@@ -122,7 +122,7 @@
   //新增圖片方法
 
   function add_pic(){
-    $("#addpic").change(function(){
+    $("#imgInp").change(function(){
       //當檔案改變後，做一些事 
      readURL(this);   // this代表<input id="imgInp">
    });
@@ -135,6 +135,7 @@
     reader.readAsDataURL(input.files[0]);
   }
 }
+
     
   }
 
