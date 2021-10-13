@@ -117,10 +117,14 @@
   //新增圖片方法
 
   function add_pic(){
-    $("#addpic").append('<input type="file">')
-    
-
-    
+    $('#addpic').change(function() {
+   var file = $('#file')[0].files[0];
+    var reader = new FileReader;
+      reader.onload = function(e) {
+    $('#addpic').attr('src', e.target.result);
+  };
+  reader.readAsDataURL(file);
+});
   }
 
   //圖片預覽
