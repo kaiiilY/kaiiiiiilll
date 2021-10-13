@@ -59,8 +59,13 @@
     <button onclick="add_pic()" class="btn btn-primary col-2" type="button" id="add_pic">添加一份照片</button>
     <button onclick="delete_pic()" style="margin-left: 5px ;" class="btn btn-outline-secondary col-2" type="button">刪除照片</button>
 </div>
-        <div id="addpic">
-</div>
+<form action="/somewhere/to/upload" enctype="multipart/form-data">
+
+  <input name="progressbarTW_img" type="file" id="addpic" accept="image/gif, image/jpeg, image/png"/ >
+
+  <img id="preview_progressbarTW_img" src="#" />
+
+</form>
 
 <table class="table table-bordered" style="margin-top:15px;">
     <thead>
@@ -117,14 +122,20 @@
   //新增圖片方法
 
   function add_pic(){
-    $('#addpic').change(function() {
-   var file = $('#file')[0].files[0];
-    var reader = new FileReader;
-      reader.onload = function(e) {
-    $('#addpic').attr('src', e.target.result);
-  };
-  reader.readAsDataURL(file);
-});
+    $("#addpic").change(function(){
+      //當檔案改變後，做一些事 
+     readURL(this);   // this代表<input id="imgInp">
+   });
+   function readURL(input){
+  if(input.files && input.files[0]){
+    var reader = new FileReader();
+    reader.onload = function (e) {
+       $("#preview_progressbarTW_img").attr('src', e.target.result);
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+    
   }
 
   //圖片預覽
